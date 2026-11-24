@@ -1,0 +1,139 @@
+import YM.MergeProof.South.Merman
+
+/-! A native capture receives an actual calibrated terminal label and the
+signed single-source and forced identities at the chosen column. The
+prescribed-label price below uses the original replicated Wilson array.
+The finite reflection-positive estimate is refined from
+`YM.MergeProof.bequeathed` in `YM.MergeProof.South.Merman`. -/
+set_option autoImplicit false
+noncomputable section
+
+namespace YM.Integration.CalibratedCellMatch
+open MergeProof
+open Finset Function Filter MeasureTheory Lattice Wilson RG Push Marker Source Extra.Histories
+open Planned.GuardedAtom Next.Rank Edition Spindle Extra.Multi Motion Local Bid Cells Extraction Exponential Overlay
+open Accent MergeProof.Float PhysicalNext.Repeat Lotus
+open scoped Topology Matrix.Norms.Frobenius BigOperators Classical ContDiff
+variable {G:Gauge}(C:Family G)(N k m p d:ℕ)(H:C.Makes)
+variable {W:Worth}{u ψ φ δ:ℕ→ℝ}{r:ℕ→ℕ}{ζ:ℕ→ℕ→ℝ}{D:∀ N p m:ℕ,m<N→GaugeDoor (C.path.rep N p (m+1)) (C.path.rep N p m)}
+variable (w : ℝ)
+set_option quotPrecheck false
+open Relay
+local notation "T"=> C.path
+local notation "ℓ"=> C.ref d
+local notation "F"=> C.labels.level d
+local notation "Y!"=> C.localSection d
+local notation "a!"=> C.S.a
+local notation "s!"=> C.factory d N p
+local notation "R"=> C.path.rep N p
+local notation "ζ!"=> ζ d
+section
+open GridApprox
+variable (h:Scrim C W u ψ φ δ ζ r D) (L:Stock.Tabs C.path.levels)
+variable (J:ℕ) (hV : Stock.Tabs.opens C.path.levels 1 J m) {hk:m≤k}{hN:k<N}
+local notation "o"=> fun i=> Mix.camp C p J i
+local notation "V"=> Site (C.side J p)
+local notation "Bt"=> Stock.census V
+local notation "u'"=> hands C p J
+local notation "α'"=> march (fun _ : V=> w) φ m k
+local notation "h!"=> center C.S p (hV.1.trans (hk.trans hN.le)) 0
+variable (f : Config G (C.side N p) → ℂ) (Q : Coefficient (C.labels.level d) (C.side k p))
+
+/-- A realized label belongs to the original calibrated graph, including the
+forced-profile identity for its complete signed program. -/
+def Matched (ht : C.ref d ≤ m) (hk : m ≤ k) (hN : k ≤ N) (E : ℝ) (B : C.label d) : Prop :=
+  let X := (h.costs.aim d N p (ht.trans (hk.trans hN))).lyrics.choose
+  let b := (C.factory d N p).terminal.symm B
+  ∃ (P : ∀ i, Coefficient (C.labels.level d) (C.side i p)) (g : ℕ → ℝ),
+    Club C.path C.params (C.localSection d) (ζ d) ψ m k N p (stair φ (2 * w) m) D P g hN ∧
+      (C.labels.level d).coeffSize ((X.tone k).index b) ≤ 2 * E ∧
+      (P k).exponentialEntry 0 (C.localSection d) (R k) =
+        Q.exponentialEntry 0 (C.localSection d) (R k) +
+          ((X.tone k).plays (-b)).exponentialEntry 0 (C.localSection d) (R k) ∧
+      profile (R k).activities (P k).forced =
+        profile (R k).activities Q.forced + profile (R k).activities ((X.tone k).plays (-b)).forced
+
+include H
+
+/-- A formatted coefficient and the native remainder and radius budgets
+produce a certificate at one identifiable original label. -/
+theorem choose_matched (ht : C.ref d ≤ m) (hk : m ≤ k) (hN : k ≤ N)
+    (t c E : ℝ) (hr : Q.Format 0 C.params (R k))
+    (hb : Q.remBound 0 (R k) (Real.sqrt (C.path.levels.clock.forcedAllowance k)) t)
+    (ht' : (C.labels.level d).coeffSize Q.x + t ≤ c) (hc : 0 < c)
+    (hE : 4 * (1 + (C.path.levels.params k).columns) * c ≤ E)
+    (hw : 0 < w) (hP : 32 * (1 + (C.path.levels.params k).columns) * w *
+      ‖alto T m d‖ * (E / gainChart T k m) ≤ ζ d m / 2) :
+    ∃ B : C.label d, Matched C N k m p d w h Q ht hk hN E B := by
+  let X := (h.costs.aim d N p (ht.trans (hk.trans hN))).lyrics.choose
+  obtain ⟨_, hL, hY, _⟩ := (h.costs.aim d N p (ht.trans (hk.trans hN))).lyrics.choose_spec
+  let K := (C.path.levels.params k).columns
+  have hK : 1 ≤ K := (C.path.levels.params k).columns_ge
+  have hpos : 0 < E := (show 0 < 4 * (1 + K) * c by positivity).trans_le hE
+  have hrad : 2 * w * ‖alto T m d‖ * (E / gainChart T k m) ≤ ζ d m / 2 :=
+    (mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_right
+      (show 2 ≤ 32 * (1 + K) by linarith only [hK]) hw.le) (norm_nonneg _))
+      (div_nonneg hpos.le (Real.exp_pos _).le)).trans hP
+  obtain ⟨P, g, b, hclub, hsize, hsingle, hforced⟩ :=
+    commune C N k m p d H (2 * w) X h Q t c E ht hk hN hL hY hr hb ht' hE hc
+      (mul_pos zero_lt_two hw) hrad
+  refine ⟨(C.factory d N p).terminal b, ?_⟩
+  simp only [Matched, LinearEquiv.symm_apply_apply]
+  exact ⟨P, g, hclub, hsize, hsingle, hforced⟩
+
+include L
+
+/-- Pay a specified graph-certified counterterm in the whole replicated
+Wilson cell. The hypothesis `hZ` is the original full-array source receipt
+for the uncorrected observable. -/
+theorem prescribed_price (ht : C.ref d ≤ m) (hk : m ≤ k) (hN : k < N)
+    (hR : GridApprox.room C.path.levels J k (lensScope C d))
+    (hC : ∀ b : C.label d, Interior ((center C.S p (hV.1.trans (hk.trans hN.le)) 0).chamber 0)
+      (C.O N p b 0)) (hf : Continuous f)
+    (ha : Interior ((center C.S p (hV.1.trans (hk.trans hN.le)) 0).chamber 0) f)
+    (E : ℝ) (hp : 0 < E) (hw : 0 < w)
+    (hP : 32 * (1 + (C.path.levels.params k).columns) * w * ‖alto T m d‖ *
+      (E / gainChart T k m) ≤ ζ d m / 2)
+    (B : C.label d) (hmatch : Matched C N k m p d w h Q ht hk hN.le E B)
+    (hZ : Served (R k) (fun i => radiant (alto T k d) (u' i) (o k i)
+      (Q.exponentialEntry 0 Y! (R k))) (fun i => sunny (R k) Q.forced (u' i) (o k i) (alto T k d))
+      (gust T N p N (birth (Bt) (R N) (fun i => (center C.S p
+        (hV.1.trans (hk.trans hN.le)) 0).copy i f)) k hN.le)
+      (o k) (α') (C.path.levels.budget k).supportExponent 1) :
+    Next.UVStress.quota C d k N p B ≤ 2 * E ∧
+      (center C.S p (hV.1.trans (hk.trans hN.le)) 0).rootTest
+        (C.beta N p) (f - C.O N p B 0) ≤ 2 * (stakes C J m / w) := by
+    let X := (h.costs.aim d N p (ht.trans (hk.trans hN.le))).lyrics.choose
+    obtain ⟨hX, hL, hY, hθ⟩ := (h.costs.aim d N p (ht.trans (hk.trans hN.le))).lyrics.choose_spec
+    let b := (C.factory d N p).terminal.symm B
+    obtain ⟨P, x, hK, hH, hU, hB⟩ := hmatch
+    let Q' := (C.path.levels.params k).columns
+    have hQ : 1 ≤ Q' := (C.path.levels.params k).columns_ge
+    let v' := 8 * E * w
+    have h' : 0 < v' := by dsimp [v']; positivity
+    let q:= Size.axis F; have he(i):= embrace C N k m p d H v' (q i) X h 1 (4*(1+Q')) ht hk hN.le hL hY (Size.size_axis F i).le (by rw [mul_one]) zero_lt_one h' (le_trans (le_of_eq (b:=32*(1+Q')*w * ‖alto T m d‖*(E/gainChart T k m)) (by unfold v';ring)) hP)
+    choose Z g e hΨ using he; obtain ⟨s,hs,hy⟩:=modems C N k p d b X e (fun i=>(hΨ i).bias); have hs'(i:(F).Index):0 ≤ ‖s i‖:= norm_nonneg _; have hβ:(∑ i,‖s i‖)≤4*E:=by linarith only [hH, (show ∑ i,‖s i‖≤ _ from hy)]
+    let W₀:= center C.S p (hV.1.trans (hk.trans hN.le)) 0; let b' i:=(s!).terminal (e i); let n:=lensScope C d; let y i:= lens C N k p d (q i); let ℓ':= ∑ i,(-s i) • y i; let r':= backTo T N p hN.le ℓ'
+    have hz(i): Interior (GridApprox.window 0 n) (y i):=visible C N k p d _ H hN.le; let J' := hV.1.trans hk; have hy(i):= quakes C N k m p d H v' (q i) X h J L hN ht hk h' (hΨ i) hL hY hθ hV _ hR (hz i)
+    have hM : B = ∑ i, s i • b' i := by
+      calc
+        B = (s!).terminal b := (LinearEquiv.apply_symm_apply _ _).symm
+        _ = ∑ i, s i • b' i := by rw [hs, map_sum]; simp only [map_smul]; rfl
+    obtain ⟨hW,hZc,hσ⟩:=posing C N k p d H J y (fun i=>s i) J' hN.le b' B n hz (div_nonneg (Real.exp_pos _).le h'.le) hβ hM hC hy hR
+    constructor
+    · unfold Next.UVStress.quota; have ha : (s!).terminal.symm B = b := rfl
+      rw [ha,show (s!).entries=(X.draft T).inits from hX,show ((X.draft T).inits k b).x=_ from (hL.earned k (ht.trans hk) hN.le).currents b]; exact hH
+    · let S:= stakes C J m/w
+      have hPc:W₀.rootTest (C.beta N p) (-r' - C.O N p B 0) ≤ S:=by
+         have he: 0 ≤ stakes C J m/w:=div_nonneg (Real.exp_pos _).le hw.le
+         calc
+            _ ≤ _ := hσ
+            _ = S/2:=by unfold v' S stakes; field_simp; ring
+            _ ≤ _ := div_le_self he (by norm_num)
+      let V':= -f; have hv:Interior (W₀.chamber 0) V':= by rw [show V'=(-1:ℂ) • f from (neg_one_smul ..).symm]; exact ha.scale _
+      let f':=r'-V'; let b'':= -r'-C.O N p B 0; have hPc' : Interior (W₀.chamber 0) b'':= by unfold b''; rw [show -r'=(-1:ℂ) • r' from (neg_one_smul ..).symm]; exact Next.UVStress.minus ((show Interior _ r' from hZc).scale _) (hC B)
+      change W₀.rootTest (C.beta N p) _ ≤ 2*S
+      suffices hy' : W₀.rootTest (C.beta N p) f' ≤ S by rw [show f-C.O N p B 0=f'+b'' from by unfold f' b'' V'; abel,two_mul]; exact ((seamless H N p).semi W₀ f' b'' (Next.UVStress.minus hZc hv) hPc').trans (add_le_add hy' hPc)
+      exact celeri C N k m p d H w h L J hV f Q ht (hk:=hk) hN hR hf E hw hp X hL P b x Z e g hK hU hB s hs hΨ hβ hW hZ
+end
+end YM.Integration.CalibratedCellMatch

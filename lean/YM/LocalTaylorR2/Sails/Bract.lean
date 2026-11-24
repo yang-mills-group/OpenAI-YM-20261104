@@ -1,0 +1,90 @@
+import YM.LocalTaylorR2.Sails.Bonny
+import YM.LocalTaylorR2.Copper.Juicer
+import YM.LocalTaylorR2.Copper.Bloom
+/-! adapted Orbit/Debrief and Gateway/Casting in companion:
+ Price APPARENT T complexity killed by geometry of log polygon. At every marker projection i and support.
+  Real→complex derivative conventions bridged. `V`-selection support includes all traces.
+ -/
+set_option autoImplicit false
+noncomputable section
+namespace YM.LocalTaylorR2.Orbit
+open Function Filter Finset MeasureTheory Matrix Lattice RG RG.Patch Pressure Pressure.Stores Pressure.Tube Tree Wilson
+open Push Push.AbsoluteSums Precision Exterior Next.Fluctuations SectorMeasure Oriented Work.E03
+open ConnectedActivityE6 Shell Channel SliceRows Coat Control Window Pulse Footprint Raw Matter Mask
+open ConnectedActivityE6.Blaze Blaze.March Captain Silica Art Pond Poll Tablet Eider Stained Shield Flux Brush
+open Scroll Frond Vine Polar Foramen Gate Quill Hues Rotation Progress.StationaryScenes Census Itinerary
+open PhysicalNext.Repeat Lotus Packets Greenbelt Daisy Port RG01.Survive Candle
+open scoped Topology InnerProductSpace Matrix.Norms.Frobenius ContDiff BigOperators Classical
+
+variable {G : Gauge} {c f L : Side} {S : StepData c f} {P:Teller G} {T: Tube G S} {F : Forest S.ratio} {R : Rep G f}
+    {p : Molecule S} {m : ℕ} {W a r σ E Λ μ s κ w C : ℝ}
+    {Q: YM.ConnectedActivityE6.Target G P} {o: ConnectedActivityE6.Target.Order G W}
+variable (M:Team R) (X:Coat T F) (H:Cash W s μ L Q o C T R)
+    {Z : Support c} {k k':Finset ℕ}{u v : Air f G} (χ:Chi) (p:H.ThinP)
+local notation "Θ"=>p.val
+local notation "Ω"=> (M.signs S)
+open _root_.YM.Marker Merge Switch Palette MergeProof Accent GridRenewal.Rain GridApprox.Nil
+open Gas Ursell Trees
+variable {ι Z:Type} [Fintype ι] [DecidableEq Z] (Y:ι→Leaf R)(u:ι→ℝ)(hU:Merge.Palette.Plot Y H u)
+   (B:_root_.YM.Marker.Census Z)(z:ι→ _root_.YM.Marker.Poly B)
+local notation "t"=> Tickets (sign Y S)
+local notation "hd"=> Pressure.temp s
+local notation "P!"=> Poly B
+local notation "T!"=> turnWeight Y u
+variable (l:ℕ)
+variable (k:H.fragrances)
+local notation "Θ'"=> reachability k
+local notation "T'"=> Booking H Y l k -- check args
+set_option quotPrecheck false
+local notation "Z₀"=> Option (Fin k.1)
+open Charge RG01.Survive.Products AnalyticBridge VerifiedReset Next.Foundations
+variable {j k' m' n:ℕ} {θ ρ D K e v₀ d b r x Ct b' R' A c' δ :ℝ}
+variable (hk:Marker.Tinted G s K d o.a L χ j)(U:StoresR2 H j v₀ d A D k' x n χ)
+variable (N:Captain H j Ct d v₀ w A b r b' R' (n+j) χ) {ζ:ℝ}(hB:LocalBookingsR2 ζ c' N.conduit)
+variable (h:1≤betaF G s L)(hζ:0≤ζ)(hH:1≤θ)(hp:1≤ρ)(hs:ρ*c'≤1)(hL: Charge.Allows l j θ)(hℓ: ρ^(l+1) ≤ betaF G s L^ζ)(hM:betaF G s L^ζ ≤ Real.exp (Q.mark L μ s))
+local notation "Q₀"=> N.conduit
+variable (wU':Copper.Stems T)
+-- actual input shape; no difference in ˚ or independent marks
+local notation "wU" => stationCost H χ Y u l N D x K θ
+local notation "Δ" => fun i: H.ThinP=> totalBill H χ i N Y u K D θ ζ x ρ l
+variable {Icy:ℝ}(hI:1≤Icy)(hT:Exponent.Bank H j k' n x l m Icy) (hS:Exponent.Lodestar H m Icy N.conduit wU')
+include hS hk U hU hH hI hT
+lemma arrivedW (q:T') :
+    let f:= cameoC H χ Y u l k wU' q; GaugeInvariant f ∧ Measurable f ∧ LocalOn Θ' f ∧ ∀ V,Healthy hd Θ' V → Ore V f v₀ (cCost H χ Y u l k N D x K θ q) j:=by
+  have hh i (w:Travel S Y l) := sapP (Palette.team Y w.1) H χ i w.2 _ hS.love
+  let f (i: H.ThinP)(w:Travel S Y l) :=wiredBox H χ i Y u l wU' w; have hl (i: H.ThinP)(w:Travel S Y l): Items H i (f i w):=by
+    exact ⟨fun x y=> congr_arg (turnWeight Y u w.1*·) ((hh i w).1 x y), measurable_const.mul (hh i w).2.1, fun x y h=> congr_arg (turnWeight Y u w.1*·) ((hh i w).2.2 x y h)⟩
+  intro g₀; refine ⟨fun x y=> Finset.prod_congr rfl fun i _=> (hl _ (q i)).1 x y,Finset.measurable_fun_prod _ (fun i _=> (hl _ (q i)).2.1),?_,fun V hV Z _ _ _ v y hy hv=>?_⟩
+  · intro U V hx; have hA i : H.smallAt (k.2 i)⊆Θ':= subset_biUnion_of_mem (H.smallAt ∘ k.snd) (mem_univ i)
+    exact Finset.prod_congr rfl fun i _=> (hl _ (q i)).2.2 U V (agrees_mono hx (Finset.coe_subset.mpr (hA i)))
+  have hz(i:Z₀)(w:Travel S Y l) : Brush j (wU (k.2 i) w) 1 ((f (k.2 i) w) ∘ v) y:=by
+    have ht:= (arriveB (Palette.team Y w.1) H χ (k.2 i) N hk U hS hT V hH hI (scopeFlag H k V hV i) w.2) Z v y hy hv
+    have hT :0≤turnWeight Y u w.1:= twN H Y u hU w.1
+    have hh' := ht.smul (turnWeight Y u w.1); rw [Real.norm_of_nonneg hT] at hh'; exact hh'
+  exact Products.earns (fun i t'=> f (k.2 i) t' ∘ v) (fun i=> wU (k.2 i)) hz q
+
+local notation "C₀"=> cameoC H χ Y u l k wU'
+variable (P':BudgetPoint) (he: P'.threshold=Pressure.temp s)(hJ:P'.order≤j)(hF:P'.B=radiusB s)(n':ℕ)(hn:P'.power≤n') (x':ℝ)(hy:0≤x')(hv:Sailor G P'.threshold x' j)(hZ:j*x' ≤ v₀)
+local notation "a₀"=> wageScale H k P' j n'
+-- adapt Unroll.germs
+include he hJ hF hn hv hy hZ
+lemma viaW (q:T')(o₁:Site c)(hx:o₁∈Θ'):
+    P'.Regular Θ' (C₀ q) ∧ P'.supBounds o₁ Θ' (C₀ q) ((a₀)*cCost H χ Y u l k N D x K θ q):=by -- x notation collision !!! rename
+  let Z:= reachability k; let L:=C₀ q
+  obtain ⟨hi,hm,hL,hA⟩:= arrivedW H χ Y u hU l k hk U N hH wU' hI hT hS q
+  let d:ℝ := shiftG s*(1+ ↑(coverNumber P'.B Z))
+  have hK : 1 ≤ d:= by
+    unfold d; unfold shiftG
+    nlinarith [Nat.cast_nonneg (α:=ℝ) (coverNumber P'.B Z), Nat.cast_nonneg (α:=ℝ) (radiusB s)]
+  have hg:= c_nn H χ Y u hU l k hk U N hH q
+  have hh U (hhU: Healthy P'.threshold Z U) : ContDiffAt ℝ (↑P'.order : WithTop ℕ∞) (L ∘ increment U) 0:= (charted (hA U (he ▸ hhU)) N.position).of_le (by exact_mod_cast hJ)
+  refine ⟨⟨hL,hm,hi,hh,fun U h a ℓ e=> Next.Foundations.left_has a e (hh U h)⟩,⟨mul_nonneg (pow_nonneg (zero_le_one.trans hK) _) hg,fun U hm ℓ he' hD=>?_⟩⟩
+  have h0 : ∀ y∈Z, 1+(separation y o₁ :ℝ)≤d:= by
+    intro y hy
+    have hf := Corona.extent Z P'.B hy hx
+    unfold d shiftG; rw [← hF]
+    exact le_trans (show _ ≤ 1+(((coverNumber P'.B Z)*(4*P'.B+2) +2*P'.B:ℕ):ℝ) by exact add_le_add_right (by exact_mod_cast hf) _) (by push_cast; nlinarith [Nat.cast_nonneg (α:=ℝ) (coverNumber P'.B Z),Nat.cast_nonneg (α:=ℝ) P'.B])
+  have hn := costsD (p:=P') (Y:=d) hL hv hy o₁ _ hZ (hA _ (he ▸ hm)) h0 hK ℓ (he'.trans hJ) hD
+  apply le_trans hn _; change d^(P'.power*j)*_ ≤ d^(j*n')*_
+  rw [Nat.mul_comm P'.power]; gcongr
+end YM.LocalTaylorR2.Orbit

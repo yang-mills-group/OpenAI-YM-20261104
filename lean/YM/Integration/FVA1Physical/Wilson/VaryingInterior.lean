@@ -1,0 +1,95 @@
+import YM.Integration.FVA1Physical.Wilson.MovingInterior
+import YM.Integration.FVA1Physical.Wilson.ClockComponents
+import YM.Integration.FVA1Physical.Wilson.ClockExterior
+
+/-! Exact restriction of the physical multilevel Haar integral with varying inverse clocks to the scaled
+Lie-algebra chart. The source may depend on every fine and retained field
+and on the coupling; only its local representative is fixed. -/
+set_option autoImplicit false
+noncomputable section
+namespace YM.Integration.FVA1Physical.Wilson
+open Filter Set MeasureTheory Metric Lattice RG YM.Wilson Tree Precision RGComparison.Core16 RGComparison.Core16.Descent
+open PertExtension PertExtension.Chart PertExtension.Series PertExtension.Series.Tested PertExtension.Series.Radial
+open FVA2.CityHistory FVA2.RayScatter
+open scoped Classical Topology ContDiff
+variable {G : Gauge} {n c : Side} (d : Descent n c)
+def clockAt (z : ℕ → ℝ → ℝ) (g : ℝ) (i : ℕ) : ℝ := z i g / g^2
+
+def clockAmplitude (Z : ChartRatio G) (W : SpaceF G d → ℝ) (x : SpaceF G d) : ℝ :=
+  jacobian Z x.1 * (Fintype.card d.Tags : ℝ)⁻¹ * W x
+
+theorem clockAmplitude_hot {Z : ChartRatio G} (hZ : LocalRatio Z)
+    {W : SpaceF G d → ℝ} (hw : ContDiffAt ℝ ω W 0) : ContDiffAt ℝ ω (clockAmplitude d Z W) 0 :=
+  (((Chart.Ratio.jacobian_smooth hZ).comp (f:=Prod.fst) 0 contDiffAt_fst).mul contDiffAt_const).mul hw
+
+theorem clockAt_account (z : ℕ → ℝ → ℝ) (g : ℝ) (t : d.Tags) (V : Config G c) (x : Fields G d) :
+    d.account (clockAt z g) t V x = d.account (fun i => z i g) t V x / g^2 := by
+  rw [split_account,split_account d (fun i => z i g),Finset.sum_div]
+  exact Finset.sum_congr rfl fun i _ => by unfold clockAt; ring
+
+/-- The artificial scalar Gaussian produces exactly the common factor
+`exp (-1)` on this slice, including with a nonzero retained ray. -/
+theorem varying_inside (h : d.OK G) {Z : ChartRatio G} (hZ : LocalRatio Z)
+    (zeta : ℕ → ℝ → ℝ) (t : d.Tags) (u : Pins G c)
+    (J : PathSource (G:=G) d) (hJ : ∀ g > (0:ℝ), ∀ V, Measurable (J g V))
+    (W : SpaceF G d → ℝ) (hw : CommonGerm d J W) :
+    ∃ δ > (0:ℝ), δ ≤ small G Z ∧ ∀ r ∈ Ioo 0 δ, ∀ᶠ g in Tested.germ,
+      Real.exp (-1) * clockRegion d g (clockAt zeta g) t (J g) (expLinks G _ (g • u)) (chamber G d.Links r) =
+      Therm.chartLine (tangent G d.Links) (clockAmplitude d Z W ∘ recover u)
+        (clockPhase d t u zeta) 1 g r := by
+  obtain ⟨b,hb,loc⟩ := Metric.mem_nhds_iff.mp (hw.and (likeliest d h))
+  refine ⟨min b (small G Z),lt_min hb (Chart.Ratio.small_pos hZ),min_le_right ..,?_⟩
+  intro r hr
+  have coarse : Tendsto (fun g : ℝ => g • u) Tested.germ (𝓝 0) := by
+    have ht : Continuous (fun g : ℝ => g • u) := continuous_id.smul continuous_const
+    simpa only [zero_smul] using (ht.tendsto 0).mono_left nhdsWithin_le_nhds
+  filter_upwards [eventually_pos,coarse.eventually (ball_mem_nhds _ hb)] with g hg hu
+  let E := Coordinates G d
+  let V := expLinks G _ (g • u)
+  let U := pathAmplitude d (clockAt zeta g) t (J g) V
+  let f (z : E) := jacobian Z z * U (d.tablePath z)
+  let μ := tangent G d.Links
+  let B := ball (0:E) r
+  let I := disc (E:=E) g r
+  have iden (v : E) : B.indicator f (g • v) = I.indicator (fun y => f (g • y)) v := by
+    by_cases e : v ∈ I
+    · rw [indicator_of_mem e,indicator_of_mem (show g • v ∈ B from e)]
+    rw [indicator_of_notMem e,indicator_of_notMem (show g • v ∉ B from e)]
+  have changeVar := Measure.integral_comp_smul_of_nonneg μ (B.indicator f) g (hR:=hg.le)
+  simp_rw [iden] at changeVar
+  rw [integral_indicator (s:=I) (disc_meas ..),integral_indicator (s:=B) isOpen_ball.measurableSet] at changeVar
+  have haar : (∫ x in chamber G d.Links r, U x ∂ d.measure G) = ∫ x in B, f x ∂μ :=
+    Chart.Ratio.chamber_integral hZ U (pathAmplitude_measurable d h _ t _ V (hJ g hg V))
+      (hr.2.trans_le (min_le_right ..)) hr.1
+  change Real.exp (-1)*((g^Module.finrank ℝ E)⁻¹ * ∫ x in _, U x ∂d.measure G) = _
+  rw [haar,show (g^Module.finrank ℝ E)⁻¹ * _ = _ from changeVar.symm,← integral_const_mul]
+  apply setIntegral_congr_fun (disc_meas ..)
+  intro v hv
+  let z : SpaceF G d := (g • v, g • u)
+  let y := d.tablePath (g • v)
+  have hz : z ∈ ball 0 b := by
+    rw [mem_ball_zero_iff,Prod.norm_def]
+    exact max_lt ((mem_ball_zero_iff.mp (show g • v ∈ B from hv)).trans
+      (hr.2.trans_le (min_le_left ..))) (mem_ball_zero_iff.mp hu)
+  have hray : recover u (g • ((1:ℝ),v)) = z := by simp [recover,z]
+  have hphase : clockPhase d t u zeta (g • ((1:ℝ),v)) =
+      g^2 + d.account (fun i => zeta i g) t V y := by
+    rw [clockPhase_exact,hray]
+    change (g*1)^2 + d.account (fun i => zeta i (g*1)) t V y = _
+    rw [mul_one]
+  let P := d.account (fun i => zeta i g) t V y
+  have hexp : Real.exp (-(g^2+P)/g^2) = Real.exp (-1) * Real.exp (-P/g^2) := by
+    rw [← Real.exp_add]; congr 1; field_simp; ring
+  have hc := (loc hz).1 g hg
+  have hp := (loc hz).2 t
+  change J g V y = W z at hc
+  change d.probability t y = _ at hp
+  change Real.exp (-1) * f (g • v) = projection (clockAmplitude d Z W ∘ recover u) (clockPhase d t u zeta) g (1,v)
+  rw [projection_eq,hphase,hexp,Function.comp_apply,hray]
+  change Real.exp (-1) * (jacobian Z (g • v) * (d.probability t y *
+    Real.exp (-d.account (clockAt zeta g) t V y) * J g V y)) =
+    (jacobian Z (g • v) * _ * W z) * _
+  rw [clockAt_account,neg_div,hc,hp]
+  ring
+
+end YM.Integration.FVA1Physical.Wilson

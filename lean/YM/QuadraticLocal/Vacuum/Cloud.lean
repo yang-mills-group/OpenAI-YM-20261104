@@ -1,0 +1,125 @@
+import YM.AllOrder.Burn.Widow
+import YM.PhysicalNext.RG_NEXT_COMPLETE_REPEATABLE_NONLINEAR_STEP.Census.Widow
+import YM.QuadraticLocal.Vacuum.Utopia
+/-!
+# Restore prices on the weighted tree directly
+
+Adapted from `AllOrder.Burn.Widow`. Arbitrary weight increase for `E`.
+-/
+set_option autoImplicit false
+noncomputable section
+namespace YM.PhysicalNext.Repeat.Height
+open Function Filter Lattice RG Pressure Pressure.Tube Tree Wilson Finset MeasureTheory
+open ConnectedActivityE6 Shell Coat SliceRows Control Pulse Mask Raw Matter Pond
+open Push Push.AbsoluteSums Gas Ursell Trees Multiple Letter OmitClusters RG Shoot Precision SectorMeasure Oriented Reserves
+open AnalyticBridge VerifiedReset Collection Quotes UVNext Next.Scheduling
+open Extra.Iteration   
+open ConnectedActivityE6.Blaze Blaze.March Captain Silica
+open scoped Topology InnerProductSpace Matrix.Norms.Frobenius ContDiff BigOperators Classical
+variable {G : Gauge} {c f : Side} {S : StepData c f} {L : Side} {P : Teller G} {T : Tube G S}
+    {Q : YM.ConnectedActivityE6.Target G P} {W : ℝ} {o : ConnectedActivityE6.Target.Order G W}
+    {R : RG.Rep G f} {μ q C' d v Y A b r B s α a δ e i : ℝ} {k j n ℓ : ℕ} {F : Tree.Forest S.ratio}
+    {χ : Chi} {H : Cash W s μ L Q o α T R}
+section first
+variable (N : Captain H j C' d v Y A b r B q k χ) {D : ℝ} (hd : 1 ≤ D)
+-- The full weight on a Head of the vacuum tree: Ruler constant
+-- from growing with beta, and footprint & degree-independent factor
+-- on `Opacity.key` regular occurrences. Thus a supported term with
+-- two E insertions will pay it twice, even if this happens across
+-- a cluster boundary (in the log). Multiple powers implicit *inside the same log vertex value*
+-- are not counted here. This is NOT a modification of the analytic
+-- densities, unlike multiplying E in the exponent.
+def HeadW (τ:Multiplier) (D:ℝ) (π:ℕ) (S: StepData c f): Head S → ℝ:= Sum.elim (fun _ : Stores S=>1) (Silica.spikeW τ D π)
+lemma headW_up (τ:Multiplier) (D:ℝ) (π:ℕ) (S: StepData c f) (h:1≤D)(i:Head S): 1≤HeadW τ D π S i:= by
+ rcases i with i|i; exact le_rfl; exact spikeW_up τ D π h i
+def cloudW (τπ:Multiplier) (D:ℝ) (π:ℕ) (S : StepData c f) (p:Molecule S) := ∏ i∈p, HeadW τπ D π S i
+
+def crestW (τπ:Multiplier) (π:ℕ) (H : Cash W s μ L Q o α T R) (p : Molecule S) := cloudW τπ (grow G L s) π S p *gust S (Q.mark L μ s) (grow G L s) p *Real.exp (Q.ε * H.shapeW p)
+lemma addingW (τπ:Multiplier) (π:ℕ) (i:Molecule S) (x : ℝ) :
+    let f (z:Head S):=HeadW τπ D π S z*N.conduit.fare z
+    (∏ v∈i,gale S x D f v)=cloudW τπ D π S i*gust S x D i*(∏ v∈i, N.conduit.fare v) := by
+  intro f
+  simp only [gust,gale,f,cloudW,Cash.numP,Finset.prod_mul_distrib,Finset.prod_const,Nat.cast_sum,mul_sum,Real.exp_sum]; ring
+
+-- recover exp(ε*setPrice) jointly with all polynomial marks. Keep same ε.
+set_option linter.unusedVariables false in
+private theorem strongerSubset {ι:Type*} [DecidableEq ι] (p:ι→Support c) (B:ℕ) (u e : ι→ℝ) (a v : ℝ) {h k : ℝ} {n m:ℕ} (hu:∀ i,0≤u i) (hw:∀ i,0≤ e i)
+    (ha:0≤a) (hv:0<v) (hp:Ready p B (tariff u e 0 v) (a+2*v) h k (1/2)) (x : Site c) :
+    SumBudget (fun s:Finset ι=> Reserves.rooted p B u x a s*(1+setPrice p B e s)^n * Real.exp (v*setPrice p B e s))
+      (Reserves.extract v n 0 0* treeYield h (1/2) 0) := by
+  have he:= touch_tail p B hp x 0; simp only [Nat.zero_le, ↓reduceIte] at he
+  have hh : polyPrice v n = Reserves.extract v n 0 0 := by simp [Reserves.extract]
+  rw [← hh]; apply budget_mono (budget_scale (show 0≤ polyPrice v n by unfold Reserves.polyPrice; positivity) he)
+  · intro i; unfold Reserves.rooted; split; next =>
+      apply mul_nonneg _ (Real.exp_pos _).le; refine mul_nonneg (mul_nonneg (prod_nonneg fun i _=>hu _) (Real.exp_pos _).le) (pow_nonneg (add_nonneg zero_le_one ?_) _)
+      exact Finset.sum_nonneg fun i _=> add_nonneg (Nat.cast_nonneg _) (hw i)
+    rw [zero_mul,zero_mul]
+  intro i; unfold Reserves.rooted; split
+  next hI =>
+    have hY : (∏ j∈i,u j)*currency B a (i.biUnion p) ≤ touches p B u a x i := by
+      unfold touches; rw [if_pos hI]; unfold currency; simp only [Finset.prod_mul_distrib, ← Real.exp_sum,← Finset.mul_sum]
+      exact mul_le_mul_of_nonneg_left (Real.exp_monotone (mul_le_mul_of_nonneg_left (by exact_mod_cast Ac.cover p B hI.1) ha)) (prod_nonneg fun i _=> hu _)
+    rw [Reserves.set_exchange]
+    let D:= setPrice p B e i; have hd:0 ≤ D:= Finset.sum_nonneg fun i _=> add_nonneg (Nat.cast_nonneg _) (hw i)
+    have hx:0≤(∏ j∈i,u j)*currency B a (i.biUnion p):=mul_nonneg (prod_nonneg fun _ _=>hu _) (Real.exp_pos _).le
+    apply (mul_le_mul_of_nonneg_right (mul_le_mul hY (polynomial_cost hv hd n) (show 0 ≤ (1+D)^n by positivity) (hx.trans hY)) (Real.exp_pos _).le).trans
+    -- fixed syntax
+    simp only [Pi.zero_apply,sum_const_zero,add_zero]; change _ ≤ _*(touches p B u a x i * Real.exp (2*v*D)); rw [show 2*v*D=v*D+v*D by ring,Real.exp_add]; apply le_of_eq; unfold D Reserves.polyPrice; ring
+  next hk=> unfold touches; rw [if_neg hk,zero_mul,zero_mul,mul_zero]
+variable (hhd : 1 ≤ grow G L s) {π:ℕ} {τπ:Multiplier} (h : Lions τπ π N.conduit)
+include hhd N h
+lemma scoreP_W (hs : degreePrice (radiusB s) (grow G L s*(Q.costs L μ 1 s 0).rootHit) Q.δ ≤ 1/2) : Ac.Hit H.unionP (radiusB s)
+    (fun p : Molecule S=> crestW τπ π H p*N.conduit.meant p k) Q.exp (grow G L s*Q.overture L μ s k) := by
+  let D:=grow G L s; let X:=Q.costs L μ R.beta s C'; let E:=N.conduit; let Z:=H.supportP; let w:=Mixed.lengths S X (ConnectedActivityE6.lengths T R)
+  let g (z:Head S):=HeadW τπ D π S z*E.fare z; let u:=gale S X.markSeed D g
+  let b:= radiusB s
+  have hv : Ready Z b (tariff g w (Mixed.stamp S X) Q.ε) (Q.exp+2*Q.ε) X.rootHit Q.δ (1/2) := by
+    let z p := Silica.spikeW τπ D π p * E.flair p
+    rw [show g=Mixed.costs S Q.halo b (steamP S X) z from ?_]; swap
+    · funext p; rcases p with p|p
+      · unfold g HeadW Utopia.fare stout Mixed.costs; simp; rfl
+      rfl
+    exact Mixed.ready_vertices S Q.halo b X H.birth z (ConnectedActivityE6.lengths T R) (steamP S X) E.lives ⟨E.accrues.packetBound,h.nonneg,E.accrues.extra,h.hit⟩
+  have hD:0<D:=zero_lt_one.trans_le hhd
+  have hg p : 0≤ g p:= mul_nonneg (zero_le_one.trans (headW_up _ _ _ _ hhd _)) (E.fares _)
+  have he z:tariff u w 0 Q.ε z=D*tariff g w (Mixed.stamp S X) Q.ε z := by unfold u tariff gale Mixed.stamp; simp only [Pi.zero_apply,add_zero,Real.exp_add]; ring
+  have hz: Ready Z b (tariff u w 0 Q.ε) (Q.exp+2*Q.ε) (D*X.rootHit) Q.δ (1/2) := by rw [funext he]; exact ⟨mul_pos hD hv.1,Q.pos,hs,by norm_num,fun z=> mul_nonneg hD.le (hv.2.2.2.2.1 z), Quotes.hit_scale hD.le hv.2.2.2.2.2⟩
+  intro x
+  have hx i:0 ≤ w i:= by
+    rcases i with i | i
+    · exact mul_nonneg E.lives.extra (Nat.cast_nonneg _)
+    exact Nat.cast_nonneg _
+  have hp:= strongerSubset (m:=k) (n:=k) Z b u w Q.exp Q.ε (fun z=>mul_nonneg (mul_nonneg hD.le (hg _)) (Real.exp_pos _).le) hx Q.bound Q.usable hz x
+  convert hp using 1; ext p
+  · dsimp only; unfold Reserves.rooted; split
+    next hv=>
+      by_cases hg : H.ticketsP 0 0 0 p
+      · rw [Utopia.meant,if_pos hg,if_pos (show Ac.Spark Z p ∧ x∈p.biUnion Z from ⟨(H.attends _).1 hg,hv⟩), show (∏ i∈p,u i)=_ from addingW (D:=D) N τπ π p X.markSeed, show setPrice Z b w p=H.shapeW p from rfl, crestW, currency]
+        change _=(cloudW τπ D π S p*gust S (Q.mark L μ s) D p*(∏ i∈p,N.conduit.fare i))*Real.exp (Q.exp*coverNumber (radiusB s) (H.unionP p))*_*_; unfold D; ring
+      rw [Utopia.meant,if_neg hg,mul_zero,zero_mul,if_neg fun h=>hg ((H.attends _).2 h.1),zero_mul,zero_mul]
+    next hx => rw [if_neg fun h=>hx h.2,zero_mul,zero_mul]
+  unfold ConnectedActivityE6.Target.overture ConnectedActivityE6.Target.quantum Mixed.Costs.ceiling Reserves.treeYield
+  change D*(_ * ((X.rootHit*_)*_))=Reserves.extract _ _ _ _ *((D*X.rootHit)*_ *_)
+  dsimp only [ConnectedActivityE6.Target.costs,Buy.quote] at *; norm_num; ring
+lemma markerW (i a : ℝ) (hi : 0 < i) (hT : a+i+i ≤ Q.exp) (hv : 0<Q.overture L μ s k)
+    (hs : degreePrice (radiusB s) (grow G L s*(Q.costs L μ 1 s 0).rootHit) Q.δ ≤ 1/2) (hp : degreePrice (radiusB s) (grow G L s*salary Q L μ B s j k) i ≤ 1/2) :
+    Ready H.smallAt (radiusB s) (fun p:H.ThinP=> crestW τπ π H p.val*N.stone p) (a+i) (grow G L s*salary Q L μ B s j k) i (1/2) := by
+  let m (u:Molecule S):=crestW τπ π H u
+  let f z:=m z*N.conduit.meant z k
+  have hr : Ac.Hit H.unionP (radiusB s) f Q.exp _ := scoreP_W N hhd h hs
+  have hD:0<grow G L s:=zero_lt_one.trans_le hhd; have hh:=N.balance
+  have has (p:Molecule S):0 ≤ crestW τπ π H p:= by
+    have h1:=zero_le_one.trans (show 1 ≤ cloudW τπ (grow G L s) π S p from Finset.one_le_prod (fun i _=> headW_up _ _ _ _ hhd i)); unfold crestW gust; positivity
+  refine ⟨by unfold salary; positivity,hi,hp,by norm_num,fun p=>mul_nonneg (has p.val) (N.stone_pos _),fun x=>?_⟩
+  have hy:= budget_scale (show 0≤(2:ℝ)^j*B by positivity) (budget_pull (fun z:H.ThinP=>z.val) Subtype.val_injective (hr x))
+  refine budget_loosen (budget_mono hy (fun z=>?_) (fun z=>?_)) ?_
+  · dsimp only; split
+    next => exact mul_nonneg (mul_nonneg (has z.val) (N.stone_pos _)) (Real.exp_pos _).le
+    exact le_rfl
+  · dsimp only; split
+    next hx => rw [if_pos (show x∈H.unionP z.val from hx), ← mul_assoc, show 2^j*B*f z.val=m z.val*N.stone z by unfold f Captain.stone; ring]; exact mul_le_mul_of_nonneg_left (Real.exp_monotone (mul_le_mul_of_nonneg_right hT (Nat.cast_nonneg _))) (mul_nonneg (has z.val) (N.stone_pos _))
+    exact hy.1 z
+  unfold salary; nlinarith only [mul_pos hD hv]
+end first
+end YM.PhysicalNext.Repeat.Height
+

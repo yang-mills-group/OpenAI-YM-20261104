@@ -1,0 +1,148 @@
+import YM.Integration.WilsonRunMeasuredWickCubature
+import YM.Integration.WilsonConditionalTaylorUntunedLog
+
+/-! The dressed finite unmarked step in the independently issued
+kinetic prescription. Its unit vacuum is evaluated with the actual
+finite Wilson mean and covariance, before taking the two-leg moment. -/
+set_option autoImplicit false
+noncomputable section
+namespace YM.Integration.WilsonRunVacuumWickCubature
+open Function Matrix Filter Lattice Laurent Wilson RG Precision Tree Bloch Exterior
+open Comparison.RG02 FreeResolvent WilsonCoeffUV Push.Uniform
+open FormalBulk08 Flat Reef Orb Series Jets Shore Lava Kemp Wine Roof
+open Work.F03 Work.F05 Work.F08 PowerSeries Next.Free Stationary Lotus
+open Mesa Gorge City Cork Rift Pose Glide Bank Dawn Rial Dove
+open Planned.PrimaryIntegral295 Source Source.Drops Labels PhysicalNext.Repeat.Legato
+open MSbar MSbar.Cacao MSbar.Rolling MSbar.Bakery MSbar.Bakery.Portal
+open WilsonConditionalTaylorWick WilsonMovingPolynomialPull WilsonMovingIndependentWick
+open scoped Classical BigOperators Matrix
+
+theorem formal {A I : Type} [Fintype A] [DecidableEq A] (H : Orb.Hull A I)
+    (y : Rays I) (p : Pap (A ⊕ I)) (paid : Solved H p) :
+    glimpse y (Orb.out H p) = PowerSeries.C (traceP y H.main) + covelog (contract
+      (WilsonMovingFiniteConditional.lift I A) (WilsonMovingFiniteConditional.mean H y)
+      H.saddle.q (Spring (WilsonMovingFiniteConditional.interaction p))) := by
+  have vac := WilsonMovingIndependentWick.covariance H y (expan (Orb.positive H p))
+  rw [WilsonMovingFiniteConditional.weight H y p paid] at vac
+  change PowerSeries.map (MvPolynomial.eval y) (PowerSeries.C H.main+covelog (Orb.vocal H p)) = _
+  rw [map_add,PowerSeries.map_C,map_covelog _ (Orb.voice H p paid)]
+  change _ + covelog (glimpse y (Orb.vocal H p)) = _
+  rw [show glimpse y (Orb.vocal H p) = _ from vac]
+  rfl
+
+variable {G : Gauge} {K : KernelChoices} {j t : ℕ}
+
+private def opening (P : Flight j t) (L : Lodge P.patch) (O : ChartRatio G)
+    (b : P.patch.Branches K G) (n : Side) (a : (primary P.patch K n).Choices)
+    (p : Pap (wire G (n*P.L))) (y : Rays (wire G n)) :=
+  let H := Reef.ferry P b L n
+  contract (WilsonMovingFiniteConditional.lift (wire G n) _) (WilsonMovingFiniteConditional.mean H y) H.saddle.q
+    (Spring (WilsonMovingFiniteConditional.interaction (Reef.flush (Reef.floor K P L n) a O p)))
+
+private theorem carry {n f : Side} (S : StepData n f) (P : Flight j t) (L : Lodge P.patch)
+    (O : ChartRatio G) (b : P.patch.Branches K G) (hp : S.patch=P.patch) (hk : S.kernel=K)
+    (row : PoleRows S.patch) (same : HEq row (P.duo K.penalty).A0) (a : (primary P.patch K n).Choices) :
+    ∃ (F : Forest S.ratio) (a' : S.Choices), HEq F (Reef.floor K P L n) ∧ HEq a' a ∧
+      ∀ (U : (v : Side) → Pap (wire G v)) (y : Rays (wire G n)),
+        opening P L O b n a (U (n*P.L)) y =
+        contract (WilsonMovingFiniteConditional.lift (wire G n) (Pine G S F))
+          (Sum.elim (Flat.rawMean G S F (Bloch.installed S.ratio row) *ᵥ y) y)
+          (Flat.testPrecision G S F P.wing)⁻¹
+          (Spring (WilsonMovingFiniteConditional.interaction (Reef.flush F a' O (U f)))) := by
+  rcases S with ⟨p,k,hs⟩
+  change p=P.patch at hp
+  change k=K at hk
+  subst p
+  subst k
+  have hs' : f=n*P.patch.L := Subtype.ext hs
+  subst f
+  obtain rfl := eq_of_heq same
+  let F := Reef.floor K P L n
+  let H := Reef.ferry P b L n
+  let B := Flat.testPrecision G (primary P.patch K n) F P.wing
+  obtain ⟨bst,paid⟩ := Reef.honey P b L n
+  have inv : B⁻¹ = H.saddle.q :=
+    left_inv_eq_right_inv (Matrix.nonsing_inv_mul B (isUnit_iff_ne_zero.mpr bst.det_pos.ne')) paid
+  refine ⟨F,a,HEq.rfl,HEq.rfl,?_⟩
+  intro U y
+  have drift : WilsonMovingFiniteConditional.mean H y =
+      Sum.elim (Reef.pMean G K P n F *ᵥ y) y := by
+    unfold WilsonMovingFiniteConditional.mean
+    rw [← Reef.draught_fee (Reef.pMean G K P n F) y]
+    rfl
+  change contract _ (WilsonMovingFiniteConditional.mean H y) H.saddle.q _ =
+    contract _ (Sum.elim (Reef.pMean G K P n F *ᵥ y) y) B⁻¹ _
+  rw [← inv,drift]
+  rfl
+
+variable (R : Run G) (N i per : ℕ) (hi : i<N)
+    (F : Forest (R.family.path.levels.clock.op i per).ratio)
+    (tag : (R.family.path.levels.clock.op i per).Choices)
+
+def bank {c f : Side} {S : StepData c f} {c₀ : Clip} {X : PathData G} {O : ChartRatio G}
+    (K : Bulk.Kernel S c₀ X O) (F : Forest S.ratio)
+    (t : S.Choices) (u : Positions (Primary c G)) (p : Pap (wire G f)) :=
+  contract (straight F G) (poring F (K.b F) *ᵥ u) (K.covariance F t)
+    (Spring (barbed F t O (splitV (place (WilsonMovingGaussianCoordinates.link G _).symm p))))
+
+theorem measured (u : Positions (Primary (R.family.S.side i per) G))
+    (p : Pap (wire G (R.family.S.side (i+1) per))) :
+    let S := R.family.path.levels.clock.op i per
+    let K := (RunFormalChain.fromRun R).step N i per hi
+    let P := destination R.family.path.levels N i
+    let A := Bloch.installed S.ratio (P.duo R.family.path.levels.clock.kernel.penalty).A0
+    let y := FreeResolvent.flatten (tint G (Body 1 (R.family.S.side i per)) u)
+    contract (WilsonMovingFiniteConditional.lift (wire G (R.family.S.side i per)) _)
+      (Sum.elim (Flat.rawMean G S F A *ᵥ y) y) (Flat.testPrecision G S F P.wing)⁻¹
+      (Spring (WilsonMovingFiniteConditional.interaction (Reef.flush F tag R.metals.O p))) =
+    bank K F tag u p := by
+  intro S K P A y
+  let U := Reef.flush F tag R.metals.O p
+  let s := WilsonMovingJointAction.index (G:=G) F
+  have booked := WilsonMovingWickReindex.contracted (straight F G) (poring F (K.b F) *ᵥ u)
+    (K.covariance F tag) (K.positive F tag) s (Reef.pines F).symm
+    (Spring (WilsonMovingFiniteConditional.interaction U))
+  have active : place s (WilsonMovingFiniteConditional.interaction U) = splitV (place s U) := by
+    simp [place,WilsonMovingFiniteConditional.interaction,splitV,PowerSeries.coeff_map]
+  have issued : place s (Spring (WilsonMovingFiniteConditional.interaction U)) =
+      Spring (splitV (place s U)) := by
+    rw [← active]
+    exact (sunshine (MvPolynomial.rename s)).symm
+  rw [WilsonMovingRunWickCoordinates.injection,WilsonMovingRunWickCoordinates.coarse R N i per hi F tag u,
+    WilsonMovingRunWickCoordinates.precision R N i per hi F tag,issued,
+    WilsonMovingFiniteAction.positive F p K.branches tag R.metals.O R.alloy.B.ratio] at booked
+  exact booked
+
+theorem filed (roofs : ∀ k, Lodge ((R.family.path.levels.clock.op k 0).patch))
+    (a : hue G) (simple : G.Simple) :
+    let V := R.family.path.levels
+    let S := V.clock.op i per
+    let P := destination V N i
+    let b := fun k => (V.blocks k 0).branches
+    let W := Dove.model V roofs b R.metals.O a N (i+1)
+    let n := R.family.S.side i per
+    let fine := R.family.S.side (i+1) per
+    let H := Reef.ferry P (b i) (roofs i) n
+    let Y := Reef.landed P R.metals.O (b i) (roofs i) n tag (Mesa.stone W (n*P.L))
+    ∃ (F : Forest S.ratio) (t : S.Choices),
+      HEq F (Reef.floor V.clock.kernel P (roofs i) n) ∧ HEq t tag ∧ ∀ u : Positions (Primary n G),
+        let y := FreeResolvent.flatten (tint G (Body 1 n) u)
+        glimpse y Y = PowerSeries.C (traceP y H.main) +
+          covelog (bank ((RunFormalChain.fromRun R).step N i per hi) F t u (Mesa.stone W fine)) := by
+  intro V S P b W n fine H Y
+  obtain ⟨F,t,hF,ht,charged⟩ := carry S P (roofs i) R.metals.O (b i) rfl rfl
+    (P.duo V.clock.kernel.penalty).A0 HEq.rfl tag
+  refine ⟨F,t,hF,ht,?_⟩
+  intro u y
+  have book := (Dove.genu V roofs b R.metals.O a R.alloy.B.ratio simple (i:=i+1) (N:=N) hi).toStory
+  obtain ⟨v,B,hv,hB,stock,-⟩ := colors G V.clock.kernel.penalty V.clock.kernel.penalty_pos P.legal
+  have lead := stoned_main hv.le hB.le (stock P.wing).1 book.toVivid book.ink (n*P.L)
+  have solved := Reef.consolidate P R.metals.O (b i) (roofs i) n R.alloy.B.ratio tag (Mesa.stone W _)
+    lead (V.clock.adm i)
+  have deposited := formal H y _ solved
+  change glimpse y Y = PowerSeries.C (traceP y H.main) +
+    covelog (opening P (roofs i) R.metals.O (b i) n tag (Mesa.stone W (n*P.L)) y) at deposited
+  rw [deposited,charged (Mesa.stone W) y, measured R N i per hi F t u (Mesa.stone W fine)]
+
+end YM.Integration.WilsonRunVacuumWickCubature
+end

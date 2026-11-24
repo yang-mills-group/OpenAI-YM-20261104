@@ -1,0 +1,179 @@
+import YM.Integration.WilsonOriginalTwoFlatRoseMerNode
+import YM.Integration.WilsonOriginalTwoFlatIRFlatSalary
+
+/-! The scalar charge on the actual finite roster in terms of its independently
+issued stamp, announced tests and finite signed source variation. -/
+set_option autoImplicit false
+set_option quotPrecheck false
+noncomputable section
+namespace YM.Integration.WilsonOriginalTwoFlatRoseMerWage
+open Finset Lattice Wilson RG Tree Marker QuadraticLocal QuadraticLocal.Earn QuadraticLocal.Advent QuadraticLocal.Advent.Oak
+open QuadraticLocal.Mentor QuadraticLocal.Affinity Org AllOrder AllOrder.Floe AllOrder.Floe.Step AllOrder.Floe.Step.PlanV
+open AllOrder.Transit PhysicalNext PhysicalNext.Repeat PhysicalNext.Repeat.Legato
+open AllOrder.Transit.WheelP AnalyticBridge VerifiedReset RemainderComparison
+open Push Push.PriceCompiler Push.AbsoluteSums Stationary Comparison.RG02 QuadraticLocal.Rebirth
+open VowsR LocalComparison ConnectedActivityE6
+open scoped Classical BigOperators
+
+variable {G:Gauge} (R:Run G) (simple:G.Simple) {m i N per k:ℕ}
+  (hk:Burn.horizon k+2 ≤ R.alloy.B.a.clock.J m)
+  (D:Roots (G:=G) R.metals.p.profile R.metals.K R.metals.p.kernel) (Q:D.Tab R.rolls)
+  (π:ℕ → Layout G) (Γ:ℕ → Pace.Coin) (Ψ:∀ j, RG.Rep G (R.family.side j per))
+  (course:Concourse R.alloy R.kit R.T π Γ m N per k Ψ)
+  {φ:ℕ → ℕ} (scroll:LawScroll G φ) (books:Mentor.Offices.Books D R.rolls Q φ)
+  (hi:m ≤ i) (cut:i < N)
+  (op:Mentor.Opportunity (R.alloy.B.a.clock.J (i+1)) (R.alloy.B.a.clock.J i))
+  (lesson:Lesson (N:=N) R hk D Q π Γ hi)
+  (cal:Oak.Calendar R hk D Q π Γ Ψ hi (N:=N) lesson)
+  (ahead:Mentor.Forecast D R.rolls Q φ books)
+  (chamber:VowsR.Chamber scroll R.kit D Q books)
+  (hospital:MintClock.Hospital D R.rolls Q R.kit.target φ books ahead R.alloy.delay)
+
+open WilsonOriginalMixedBlockRows WilsonRegisteredPairUnaryWallet Filter MintClock Multi
+local notation "H" => Ψ (i+1)
+local notation "σ₀" => Poetry.Agenda.seed D φ (Burn.horizon k) (R.alloy.B.a.clock.J (i+1))
+
+
+open WilsonCoeffUV WilsonCoeffUV.Bank WilsonCoeffUV.Wheel WilsonCoeffUV.Wheel.Cadenza WilsonCoeffUV.Shard
+open WilsonCoeffUV.Embroider WilsonCoeffUV.Wheel.Mark
+open WilsonCoeffUV.Soil FundedMarkedPathSelection WilsonOlderFreshConnectedRobe
+open WilsonOriginalCollarElection WilsonIndependentCollarCensusCourse WilsonReceivedCanonicalVerseBasis
+open WilsonThermometerDeclaredSeeds WilsonReceivedFixedDigitHistory WilsonIndependentCollarAddressedSource
+open WilsonOriginalCensusDatedMaterial (Material)
+open WilsonOriginalCensusFaceSites (binder port)
+open Pert.Asymptotics
+open WilsonOriginalTwoFlatIRFlatEarned (whole)
+open WilsonOriginalTwoFlatIRFlatMarked (seat)
+open WilsonOriginalTwoFlatIRFlatPaidParts (wage)
+open WilsonOriginalTwoFlatIRFlatPartitions (crop)
+open WilsonOriginalTwoFlatIRFlatMeasured (cash)
+open WilsonReceivedChronologicalMaterialEndpoint (submitted)
+
+
+open WilsonReceivedCanonicalVersePortfolio (Selection)
+open WilsonReceivedCanonicalVerseWeighted (full)
+open WilsonOriginalMicroscopicEntranceGridRow (pin)
+open WilsonReceivedChronologicalBasis (fare)
+open WilsonIndependentCollarDatedPrior (onLevels)
+variable {f n cap q:ℕ}(grades axis:Fin 3→ℕ){V:Realm G (q+1) Credit.leanC}{draw:V.draws=R.family.path.levels}
+    {rate δ:ℝ}(κ:(v:Fin 3)→Knob (axis v))(pt:Fin 3→WilsonCoeffUV.Embroider.Chamber)
+    (o:Fin 3→Site (R.family.side f per))(upper:f+n≤N)(t:WilsonCoeffUV.Wheel.Case axis)
+local notation "J" => Stock.census (Fin 3)
+local notation "age" => i+1
+local notation "g" => regulatorRun R.family N per (age)
+local notation "side" => R.family.side (age) per
+local notation "seats" => Hot (J)
+local notation "D₀" => (∑v:Fin 3,grades v)+1
+local notation "room" => WilsonOriginalMixedBlockRows.room (Fin 3)
+local notation "top" => f+n
+local notation "high" => (Nat.le_add_right f n).trans upper
+local notation "sitesN" => pin R (high) o
+
+
+open WilsonReceivedChronologicalMaterialRoster (Filed)
+open WilsonOriginalTwoFlatRoseFixedFiles (site cells retained)
+open WilsonOriginalMicroscopicEntranceGridRow (pin)
+open Pert.Asymptotics MeasureTheory Source Labels Extra.Histories RG16.Literal
+open WilsonMaxwellThermometerNominatedCofactor (native)
+open WilsonThermometerAlignedCells (atOrigin)
+open WilsonNeutralOffsetCutoff (named)
+open WilsonOriginalTwoFlatRoseIdentity (entry cross)
+open WilsonOriginalTwoFlatGridScaling (gap)
+open WilsonThermometerUnitFilingFlatTelescope (numerator feeAt)
+
+local notation "home" s:max => site R o upper cut s
+local notation "ports" => fun (s:(J).Mode)(_y:Selection R grades s.val)=>port (side) (home s)
+local notation "binders" => fun (s:(J).Mode)(_y:Selection R grades s.val)=>binder (side) (home s)
+local notation "restore" => cells R (draw:=draw) o upper
+local notation "FC" => Finset (Fin 3)
+variable (M:∀(s:(J).Mode)(_y:Selection R grades s.val),Material R N (i+1) q grades
+      (Poetry.Agenda.seed D φ (Burn.horizon k) (R.alloy.B.a.clock.J (i+1)))
+      (binder (R.family.side (i+1) per) (site R o upper cut s)))
+    (x:∀(s:(J).Mode)(_y:Selection R grades s.val),Wallet (room))
+    (v:∀a:Fin 3,R.family.label (grades a))(c:Fin 3→ℂ)
+    (previous:∀(s:(J).Mode)(_y:Selection R grades s.val),∀j:ℕ,Config G (R.family.side j per)→Poly (J))
+    (A₀:WilsonPositionThermometerCapStation.Group R.family 6)
+local notation "records" => fun (s:(J).Mode)(y:Selection R grades s.val)=>
+  WilsonReceivedChronologicalMaterialEndpoint.submitted R (N:=N) (i:=i) (per:=per) (k:=k) (n:=3) (I:=seats) D Ψ
+    ((ports) s y) ((binders) s y) grades q (M s y) (x s y)
+local notation "rows" => WilsonReceivedChronologicalSocketMix.stock R grades (day:=i+1) (records) previous
+local notation "wallet" => fare R grades v c N per (top)
+local notation "stamped" => WilsonReceivedChronologicalMixture.mix R (wallet) (rows)
+local notation "programme" => WilsonReceivedChronologicalPlant.rows R grades (n:=n) (N:=N) o v c (stamped)
+local notation "held" T:max => WilsonReceivedChronologicalReadout.face R N per (programme) (seat T)
+local notation "pairAt" => (pin R (high) o 1,pin R (high) o 2)
+local notation "phys" T:max => WilsonOriginalTwoFlatRoseNominated.face (N:=N) (per:=per) R A₀ (pairAt) T
+local notation "physical" => fun s:FC=>R.family.omega N per (phys s)
+local notation "readAt" => WilsonMaxwellThermometerNominatedCofactor.reading R A₀ N per (pairAt) (native R A₀ N per (pairAt) 0)
+local notation "trueAt" a:max s:max => retained R (cap:=cap) (draw:=draw) cut grades axis κ pt o upper t x v c a (seat s)
+local notation "nativeAt" a:max s:max => WilsonOriginalTwoFlatIRFlatChronicle.total R D (f:=f) (n:=n) grades v c (ports) (binders) q M x a (seat s)
+local notation "gross" s:max => WilsonOriginalTwoFlatIRFlatChronicle.salary R D (f:=f) (n:=n) grades v c (ports) (binders) q M x (seat s)
+local notation "charge" a:max s:max => WilsonMaxwellThermometerNominatedSecant.bill (physical) (fun z=>trueAt a z) s
+local notation "invoice" u:max uc:max vc:max ck:max s:max =>
+  gap R N per u (((uc).trans (ck)).trans upper) (phys s)+entry R ((uc).trans (ck)) upper (phys s) (held s)+
+  (∑j∈Ico cap (top),feeAt R N per u (held s) j)+cross R (N:=N) uc vc (held s)+
+  (∑j∈Ico (age) cap,feeAt R N per (age) (held s) j)
+
+
+open WilsonOriginalCensusDatedMaterial (words)
+open WilsonOriginalTwoFlatIRFlatSalary (head)
+
+def factor:ℝ:=∏z:seats,(1+2^(q+mass grades z.val.val+2)*
+  head (R:=R) (k:=grades) (e:=q) (δ:=δ) (rate:=rate) (j:=i) t z)
+
+def variation (s:(J).Mode):ℝ:=∑y:Selection R grades s.val,‖(wallet) s y‖
+local notation "head₀" z:max => head (R:=R) (k:=grades) (e:=q) (δ:=δ) (rate:=rate) (j:=i) t z
+local notation "printed" => factor (R:=R) (i:=i) (q:=q) (δ:=δ) (rate:=rate) grades axis t
+local notation "weights" s:max => variation R (f:=f) (n:=n) (N:=N) (per:=per) grades v c s
+local notation "paper" T:max => (weights (seat T))*(printed)
+
+theorem purchased
+    (filed:∀s y,Filed (K:=top) (draw:=draw) (rate:=rate) (δ:=δ) (restore)
+      κ pt (full R grades y) (side) (home s) t (M s y)) (T:FC):
+    gross T ≤ paper T:=by
+  rw [WilsonOriginalTwoFlatIRFlatChronicle.salary,variation,Finset.sum_mul]
+  apply Finset.sum_le_sum
+  intro y _
+  apply mul_le_mul_of_nonneg_left _ (norm_nonneg _)
+  let s:=seat T
+  let W:=M s y
+  have cost0 (z:seats):0≤2^(q+mass grades z.val.val+2)*(∑a:Fin (q+1),(words W z).fare a):=by
+    rw [Finset.mul_sum]
+    exact Finset.sum_nonneg (fun a _=>(abs_nonneg _).trans (WilsonOriginalTwoFlatIRFlatWage.expense W z a))
+  apply Finset.prod_le_prod
+  · intro z _
+    change 0≤1+‖∏a∈z.val.val,((x s y) a).val‖*(2^(q+mass grades z.val.val+2)*_)
+    exact add_nonneg zero_le_one (mul_nonneg (norm_nonneg _) (cost0 z))
+  · intro z _
+    apply add_le_add_right
+    have income:=WilsonOriginalTwoFlatIRFlatSalary.original κ pt (restore) (full R grades y)
+      (home s) t W (filed s y) z
+    have unit:‖∏a∈z.val.val,((x s y) a).val‖≤1:=by
+      rw [norm_prod]
+      exact Finset.prod_le_one (fun _ _=>norm_nonneg _) (fun a _=>((x s y) a).property)
+    change ‖∏a∈z.val.val,((x s y) a).val‖*(2^(q+mass grades z.val.val+2)*(∑a:Fin (q+1),(words W z).fare a))≤
+      2^(q+mass grades z.val.val+2)*(head₀ z)
+    exact ((mul_le_mul_of_nonneg_right unit (cost0 z)).trans_eq (one_mul _)).trans
+      (mul_le_mul_of_nonneg_left income (by positivity))
+
+include simple course cut in
+theorem original (old:age<top)(order shelf:ℕ)(income:Fin 3→ℝ)(tol:ℝ)
+    (posted:∀s y,WilsonOriginalCensusMaterialPosting.Posted R hk D Q π Γ Ψ books hi op lesson ahead
+      ((ports) s y) ((binders) s y) grades order shelf q income (M s y) tol)
+    (filed:∀s y,Filed (K:=top) (draw:=draw) (rate:=rate) (δ:=δ) (restore)
+      κ pt (full R grades y) (side) (home s) t (M s y))
+    {u:ℕ}(uc:u≤cap)(vc:age≤cap)(ck:cap≤top)
+    (reg:∀s:FC,∀j:ℕ,min u (age)≤j→j≤top→Integrable (numerator R N per j ((held s) j)) (prior G _))
+    (hg:0≤g)(small:g≤1)(p:ℕ)(degree:p≤q):
+    ‖(readAt)-WilsonPositionThermometerConnected.value (fun s:FC=>trueAt p s)-
+      ∑s:FC,(charge p s)*(invoice u uc vc ck s)‖≤g^(p+1)*∑s:FC,‖charge p s‖*(paper s):=by
+  apply (WilsonOriginalTwoFlatRoseMerNode.original R simple hk D Q π Γ Ψ course books hi cut op lesson ahead
+    grades axis κ pt o upper t M x v c previous A₀ old order shelf income tol posted filed uc vc ck reg hg small p degree).trans
+  apply mul_le_mul_of_nonneg_left _ (pow_nonneg hg _)
+  apply Finset.sum_le_sum
+  intro s _
+  apply mul_le_mul_of_nonneg_left _ (norm_nonneg _)
+  exact purchased R D cut grades axis κ pt o upper t M x v c filed s
+
+end YM.Integration.WilsonOriginalTwoFlatRoseMerWage
+end

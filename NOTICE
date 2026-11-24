@@ -1,0 +1,159 @@
+Yang–Mills
+Original project code is released under Apache License 2.0. See LICENSE.
+
+These project files use the ordered-partition simplification in iteratedDerivWithin_vcomp_three.
+  lean/YM/Next/STATIONARY/OneLoop/WilsonVertices.lean (upsurge)
+Upstream file: Mathlib/Analysis/Calculus/IteratedDeriv/FaaDiBruno.lean
+Authors: Yury Kudryashov.
+Copyright (c) 2025 Yury Kudryashov. All rights reserved.
+Apache License 2.0.
+https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/Calculus/IteratedDeriv/FaaDiBruno.lean
+
+These project files use the normalized Haar measure instances for UnitAddCircle.
+  lean/YM/Contacts/Pulse/Pluck.lean (local Haar instances)
+  lean/YM/Integration/WilsonOriginalDirectionalFourier.lean (local Haar instances)
+  lean/YM/Integration/WilsonOriginalFiledFourierSlices.lean (local Haar instances)
+  lean/YM/Integration/WilsonOriginalFiledJetStep.lean (local Haar instances)
+  lean/YM/Integration/WilsonOriginalLocalizedResidual.lean (local Haar instances)
+  lean/YM/Integration/WilsonOriginalTorusAxisExpense.lean (local Haar instances)
+  lean/YM/Integration/WilsonOriginalTorusDerivativePrice.lean (local Haar instances)
+  lean/YM/Integration/WilsonOriginalTorusPartialJets.lean (local Haar instances)
+  lean/YM/Integration/WilsonSeparatedOriginalSlabFourierOrbit.lean (local Haar instances)
+  lean/YM/Integration/WilsonSeparatedOriginalSlabFourierScore.lean (local Haar instances)
+  lean/YM/Laurent/Rune.lean (local Haar instances)
+Upstream file: Mathlib/Analysis/Fourier/AddCircleMulti.lean
+Authors: David Loeffler.
+Copyright (c) 2023 David Loeffler. All rights reserved.
+Apache License 2.0.
+https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/Fourier/AddCircleMulti.lean
+
+These project files use the coordinate marginal and mean calculations in measurePreserving_restrict₂_multivariateGaussian.
+  lean/YM/AnalyticBridge/ANNULUS_RATIO_INSERTIONS/Brume.lean (tours)
+  lean/YM/AnalyticBridge/GAUSSIAN_FIELD_ALIGNMENT/Completed.lean (marginal)
+  lean/YM/AnalyticBridge/MARGINAL_MULTIPLIER_3B1D/Marginal.lean (paid_projection)
+  lean/YM/AnalyticBridge/LOCAL_GAUSSIAN_MULTIPLIER/Marginal.lean (look_law)
+  lean/YM/AnalyticBridge/SHARP_NORMALIZED_TAIL/Projection.lean (wide_projection)
+  lean/YM/AnalyticBridge/GAUSSIAN_FIELD_ALIGNMENT/Agreements.lean (warp_cloud)
+Upstream file: Mathlib/Probability/Distributions/Gaussian/Multivariate.lean
+Authors: Rémy Degenne and Etienne Marion.
+Copyright (c) 2026 Rémy Degenne. All rights reserved.
+Apache License 2.0.
+https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Probability/Distributions/Gaussian/Multivariate.lean
+
+These project files use the coordinate insertion and factorization in integral_fin_nat_prod_eq_prod and integral_fintype_prod_eq_prod.
+  lean/YM/Work/F05/PiDensity.lean (lprodFin and lprod)
+Upstream file: Mathlib/MeasureTheory/Integral/Pi.lean
+Authors: Xavier Roblot.
+Copyright (c) 2023 Xavier Roblot. All rights reserved.
+Apache License 2.0.
+https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/MeasureTheory/Integral/Pi.lean
+
+These project files use the binomial antidiagonal simplification in exp_add_of_commute_of_mem_ball.
+  lean/YM/ProofPorts/GRID_RENEWED_RESERVES/Rain.lean (plus)
+  lean/YM/Next/RANK/Exponential.lean (pass_add)
+Upstream file: Mathlib/Analysis/Normed/Algebra/Exponential.lean
+Authors: Anatole Dedecker, Eric Wieser and Yuyang Zhao.
+Copyright (c) 2021 Anatole Dedecker. All rights reserved.
+Apache License 2.0.
+https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/Normed/Algebra/Exponential.lean
+
+These project files use the power-series radius and summation argument in hasFPowerSeriesOnBall_of_differentiable_off_countable.
+  lean/YM/Analysis/Weak.lean (lift_weak)
+Upstream file: Mathlib/Analysis/Complex/CauchyIntegral.lean
+Authors: Yury Kudryashov.
+Copyright (c) 2021 Yury Kudryashov. All rights reserved.
+Apache License 2.0.
+https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/Complex/CauchyIntegral.lean
+
+These project files use the iteratedFDeriv_tsum argument for a locally defined series.
+  lean/YM/Push/LOOP_COEFFICIENT/Paths/Domination.lean (iteratedFDeriv_sumBall_aux)
+  lean/YM/Push/STATIONARY_UNIFORM/Scatter.lean (iterated_at_sum)
+  lean/YM/AnalyticNext/QUARTIC_MATCH/Estimate/Numbers.lean (honorable)
+  lean/YM/AnalyticNext/CUBIC_MATCH/Terms/Normal.lean (normal_series)
+  lean/YM/Integration/WilsonChartSmoothSeries.lean (derivatives)
+  lean/YM/MSbar/Chord/Monte.lean (will)
+  lean/YM/Next/STATIONARY/Shape/LocalOracle.lean (circles)
+Upstream file: Mathlib/Analysis/Calculus/SmoothSeries.lean
+Authors: Sébastien Gouëzel.
+Copyright (c) 2022 Sébastien Gouëzel. All rights reserved.
+Apache License 2.0.
+https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/Calculus/SmoothSeries.lean
+
+These project files use the radial change of variables and density calculation in integral_fun_norm_addHaar.
+  lean/YM/TraceExtension/Wick/PolynomialField.lean (field_value)
+Upstream file: Mathlib/MeasureTheory/Constructions/HaarToSphere.lean
+Authors: Yury Kudryashov.
+Copyright (c) 2023 Yury Kudryashov. All rights reserved.
+Apache License 2.0.
+https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/MeasureTheory/Constructions/HaarToSphere.lean
+
+These project files use the finite-coordinate factorization of the Gaussian characteristic function in charFun_stdGaussian.
+  lean/YM/MultiNext/VACUUM_STABILITY/Gaussian/Seam.lean (mgf_char)
+  lean/YM/SectorNext/RECONNECTED_LOCALITY/Gram.lean (source_says)
+Upstream file: Mathlib/Probability/Distributions/Gaussian/Multivariate.lean
+Authors: Rémy Degenne and Etienne Marion.
+Copyright (c) 2026 Rémy Degenne. All rights reserved.
+Apache License 2.0.
+https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Probability/Distributions/Gaussian/Multivariate.lean
+
+The exponential damping estimate in this file uses right_half_plane_of_bounded_on_real.
+  lean/YM/GapsContact/Tube/Ascent.lean (free_ray)
+Upstream file: Mathlib/Analysis/Complex/PhragmenLindelof.lean
+Authors: Yury Kudryashov.
+Copyright (c) 2022 Yury Kudryashov. All rights reserved.
+Apache License 2.0.
+https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/Complex/PhragmenLindelof.lean
+
+The finite-subset estimates in these passages use the powerset-of-the-union argument in summable_finsetProd_of_summable_nonneg.
+  lean/YM/FullVolume/E6/Sparse.lean (arbitrary)
+  lean/YM/Integration/ActualNormalizedLocalDensity.lean (FullBudget.cluster_price)
+  lean/YM/Overlay/Pays.lean (population)
+  lean/YM/Push/ABSOLUTE_SUMS/Product.lean (set_products)
+  lean/YM/Push/BETA_TRANSPORT/Activity.lean (exponential_sum, adapted finite-subset estimate)
+  lean/YM/Push/CORRECTED_COLUMNS/EndpointCaps.lean (Value.full)
+  lean/YM/Push/RELAY_DIFFERENCE/AttachmentBounds.lean (small_families)
+  lean/YM/SectorNext/LARGE_FIELD_REMAINDERS/Multiplier.lean (occurrence_budget, adapted finite-subset estimate)
+  lean/YM/SectorNext/VACUUM_NORMALIZATION/Covered.lean (sum_exp_bound)
+  lean/YM/UVExtension/Steady/Cinemas.lean (unlocked)
+Upstream file: Mathlib/Analysis/SpecialFunctions/Log/Summable.lean
+Authors: Chris Birkbeck.
+Copyright (c) 2024 Chris Birkbeck. All rights reserved.
+Apache License 2.0.
+https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/SpecialFunctions/Log/Summable.lean
+
+These passages apply related powerset estimates to nonempty families or differences of products.
+  lean/YM/Extra/SOURCE_HISTORIES/Till.lean (budget_cluster)
+  lean/YM/Integration/WilsonLongContactPriorFlags.lean (finite)
+  lean/YM/Progress/DIRECTED_RECIPE/EvalBounds.lean (fin_products and products)
+Upstream file: Mathlib/Analysis/SpecialFunctions/Log/Summable.lean
+Authors: Chris Birkbeck.
+Copyright (c) 2024 Chris Birkbeck. All rights reserved.
+Apache License 2.0.
+https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/SpecialFunctions/Log/Summable.lean
+
+This project adapts the inner product and the symmetry and linearity proofs of instPreInnerProductSpaceCoreH₀ to a complex scalar kernel.
+  lean/YM/Hilbert/Kolmogorov.lean (Kernel.core)
+Upstream file: Mathlib/Analysis/InnerProductSpace/Reproducing.lean
+Authors: Hampus Nyberg and Yaël Dillies.
+Copyright (c) 2026 Hampus Nyberg. All rights reserved.
+Apache License 2.0.
+https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/InnerProductSpace/Reproducing.lean#L230-L241
+
+The smooth-series argument in dons follows the continuity and differentiability steps of Sébastien Gouëzel's Mathlib proof of contDiff_tsum, here on an open preconnected set.
+  lean/YM/RemainderComparison/Herbal/Chart.lean (dons)
+Upstream file: Mathlib/Analysis/Calculus/SmoothSeries.lean
+Authors: Sébastien Gouëzel.
+Copyright (c) 2022 Sébastien Gouëzel. All rights reserved.
+Apache License 2.0.
+https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/Analysis/Calculus/SmoothSeries.lean#L226-L247
+
+For the corresponding unweighted kernel and rank arguments in these passages, compare ker_mulVecLin_transpose_mul_self and rank_transpose_mul_self.
+  lean/YM/AnalyticBridge/LOCAL_GAUSSIAN_LAWS/Flux.lean (right_of_count)
+  lean/YM/Further/CORRECTED_LIFT_COEFFICIENTS/Resolve.lean (nothing and charge_image)
+Upstream file: Mathlib/LinearAlgebra/Matrix/Rank.lean
+Authors: Johan Commelin and Eric Wieser.
+Copyright (c) 2021 Johan Commelin. All rights reserved.
+Apache License 2.0.
+https://github.com/leanprover-community/mathlib4/blob/81a5d257c8e410db227a6665ed08f64fea08e997/Mathlib/LinearAlgebra/Matrix/Rank.lean#L460-L478
+
+The Mathlib license is in third_party_licenses/Mathlib-LICENSE.txt.
